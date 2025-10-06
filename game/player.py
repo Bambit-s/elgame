@@ -1,5 +1,5 @@
 import pygame
-from settings import PLAYER_SPEED, MAP_WIDTH, MAP_HEIGHT
+from settings import MAP_WIDTH, MAP_HEIGHT
 from inputhandler import InputHandler
 
 class Player(pygame.sprite.Sprite):
@@ -8,7 +8,7 @@ class Player(pygame.sprite.Sprite):
         self.image = pygame.Surface((40, 60))
         self.image.fill((200, 50, 50))
         self.rect = self.image.get_rect(center=(x, y))
-        self.speed = PLAYER_SPEED
+        self.speed = 5
 
     def update(self, input_handler: InputHandler):
         if input_handler.up():

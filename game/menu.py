@@ -15,16 +15,16 @@ class Menu:
         self.input_handler = InputHandler()
 
     def draw(self):
-        self.window.fill((20,20,40))
+        self.window.fill((20, 20, 40))
         width, height = self.window.get_size()
 
-        title = self.font_big.render("RUSSIANS vs PYTHONS", True, (255,200,50))
-        self.window.blit(title,(width//2 - title.get_width()//2,120))
+        title = self.font_big.render("RUSSIANS vs PYTHONS", True, (255, 200, 50))
+        self.window.blit(title, (width // 2 - title.get_width() // 2, 120))
 
         for i, text in enumerate(self.options):
-            color = (255,255,255) if i==self.selected else (180,180,180)
-            render = self.font_small.render(text,True,color)
-            self.window.blit(render,(width//2 - render.get_width()//2,300 + i*80))
+            color = (255, 255, 255) if i == self.selected else (180, 180, 180)
+            render = self.font_small.render(text, True, color)
+            self.window.blit(render, (width // 2 - render.get_width() // 2, 300 + i * 80))
 
         pygame.display.flip()
 
@@ -37,15 +37,17 @@ class Menu:
                 if event.type == pygame.QUIT:
                     return "quit"
 
-            # обновляем ввод
+            # обновляем состояние клавиш
             self.input_handler.update()
 
-            # навигация
-            if self.input_handler.up():
+            # навигация по меню — одноразовые нажатия
+            if self.input_handler.menu_up():
                 self.selected = (self.selected - 1) % len(self.options)
-            elif self.input_handler.down():
+            elif self.input_handler.menu_down():
                 self.selected = (self.selected + 1) % len(self.options)
-            elif self.input_handler.action():
+
+            # подтверждение выбора
+            if self.input_handler.action():
                 choice = self.options[self.selected]
                 if choice == "Играть":
                     return "play"
