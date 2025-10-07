@@ -67,4 +67,4 @@ class SettingsMenu:
                     pygame.display.set_mode((width,height), flags)
 
             self.draw()
-            self.clock.tick(30)
+            self.clock.tick(60)

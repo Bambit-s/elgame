@@ -59,4 +59,4 @@ class Menu:
                     pass
 
             self.draw()
-            clock.tick(30)
+            clock.tick(60)
